@@ -7,13 +7,14 @@ const MongoStore = require('connect-mongo')(session)
 const flash = require('express-flash')
 const logger = require('morgan')
 const connectDB = require('./config/database')
-const mainRoutes = require('./routes/main')
-const todoRoutes = require('./routes/todos')
+const indexRouter = require('./routes/index')
+const menuRouter = require('./routes/menu')
+const loginRouter = require('./routes/login')
 
 require('dotenv').config({path: './config/.env'})
 
 // Passport config
-require('./config/passport')(passport)
+// require('./config/passport')(passport)
 
 connectDB()
 
@@ -33,14 +34,15 @@ app.use(
   )
   
 // Passport middleware
-app.use(passport.initialize())
-app.use(passport.session())
+// app.use(passport.initialize())
+// app.use(passport.session())
 
 app.use(flash())
-  
-app.use('/', mainRoutes)
-app.use('/todos', todoRoutes)
- 
+
+app.use('/', indexRouter)
+app.use('/menu', menuRouter)
+app.use('/login', loginRouter)
+
 app.listen(process.env.PORT, ()=>{
     console.log('Server is running, you better catch it!')
 })    
