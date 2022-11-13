@@ -1,16 +1,16 @@
 const mongoose = require('mongoose')
 
 let menuSchema = new mongoose.Schema({
-    name: (type:String, require: true),
-    Icon: (type:String, require: true),
-    menuUrl: (type:String, require: true),
-    entryDate: (type:Date, default: Date.now)
+    name: {type: String, require: true},
+    Icon: {type: String, require: true},
+    menuUrl: {type: String, require: true},
+    entryDate: {type: Date, default: Date.now}
 })
 
 let userSchema = new mongoose.Schema({
-    email: (type:String, require: true),
-    pwd: (type:String, require: true),
-    entryDate: {type:Date,default:Date.now}
+    email: {type: String, require: true},
+    pwd: {type: String, require: true},
+    entryDate: {type: Date,default:Date.now}
 })
 
 let menu = mongoose.model('menu', menuSchema, 'menu')
